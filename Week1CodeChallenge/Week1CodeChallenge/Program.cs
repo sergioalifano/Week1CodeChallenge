@@ -135,6 +135,7 @@ namespace Week1CodeChallenge
             string longestWord = string.Empty;
             string secondLongestWord = string.Empty;
             string shortestWord = string.Empty;
+            bool found = false;
 
             //we assume that the first word is the longest
             longestWord = arrayOfWords[0];
@@ -186,14 +187,41 @@ namespace Week1CodeChallenge
             //we sort the array from the shortes to the longest number
             Array.Sort(lengthEachWord);
 
-            //now we use the last index of the sorted array to display the longest word
-            Console.WriteLine("The longest word is: " + arrayOfWords[lengthEachWord[lengthEachWord.Length-1]]);
+            //now we know that the last element of the sorted array is the length of the longest word
+            //so we compare each word's length of the arrayOfWords with the last element of the sorted array to find the longest word
+            int index = 0;
+            while (!found || index<arrayOfWords.Length)
+            {
+                if (arrayOfWords[index].Length == lengthEachWord[lengthEachWord.Length - 1])
+                {
+                    found = true;
+                }
+            } 
+            Console.WriteLine("The longest word is: " + arrayOfWords[index]);
 
-            //now we use the second last index of the sorted array to display the second longest word
-            Console.WriteLine("The second longest word is: " + arrayOfWords[lengthEachWord[lengthEachWord.Length-2]]);
+            //we do the same with the second-last element of the sorted array
+            found = false;
+            index = 0;
+            while (!found || index < arrayOfWords.Length)
+            {
+                if (arrayOfWords[index].Length == lengthEachWord[lengthEachWord.Length - 2])
+                {
+                    found = true;
+                }
+            } 
+            Console.WriteLine("The second longest word is: " + arrayOfWords[index]);
 
-            //now we use the first index of the sorted array to display the shortest word
-            Console.WriteLine("The shortest word is: " + arrayOfWords[lengthEachWord[0]]);
+            //now the first element of the sorted array will be the length of the shortest word
+            found = false;
+            index = 0;
+            while (!found || index < arrayOfWords.Length)
+            {
+                if (arrayOfWords[index].Length == lengthEachWord[0])
+                {
+                    found = true;
+                }
+            } 
+            Console.WriteLine("The shortest word is: " + arrayOfWords[index]);
 
         }
         public static bool IsPrime(int number)
